@@ -11,7 +11,7 @@ body {
 
 h1 {
 	margin: 30px 0px;
-	color: #313131;
+	color: #43053f;
 	font-size: 42px;
 	font-weight: 900;
 	text-align: center;
@@ -19,6 +19,7 @@ h1 {
 
 h1 span {
 	font-weight: 300;
+    font-size: large;
 }
 
 .date-picker {
@@ -29,13 +30,35 @@ h1 span {
 	background-color: #FFF;
 	margin: 30px auto;
 	box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
-
+    border-radius: 15px 15px 0 0;
 	cursor: pointer;
 	user-select: none;
 }
 
+.date-picker::before {  
+    transform: scaleX(0);
+    transform-origin: bottom right;
+  }
+  
+  .date-picker:hover::before {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+  }
+
+  .date-picker::before {
+    content: " ";
+    display: block;
+    position: absolute;
+    top: 0; right: 0; bottom: 0; left: 0;
+    inset: 0 0 0 0;
+    background: hsl(200 100% 80%);
+    z-index: -1;
+    transition: transform .3s ease;
+  }
+
 .date-picker:hover {
-	background-color: #F3F3F3;
+	background-color: #313131;
+    color:#F3F3F3;
 }
 
 .date-picker .selected-date {
@@ -45,9 +68,14 @@ h1 span {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-
+	
 	color: #313131;
 	font-size: 28px;
+    font-weight: 700;
+}
+
+.date-picker .selected-date:hover {
+    color: #F3F3F3;
 }
 
 .date-picker .dates {
@@ -57,7 +85,7 @@ h1 span {
 	left: 0;
 	right: 0;
 
-	background-color: #FFF;
+	background-color: rgb(153, 89, 199);
 }
 
 .date-picker .dates.active {
@@ -66,9 +94,10 @@ h1 span {
 
 .date-picker .dates .month {
 	display: flex;
+	background-image: linear-gradient(180deg, #ff85f9 0, #ff78fb 16.67%, #ff68f8 33.33%, #f253f2 50%, #cf40ec 66.67%, #ad37ea 83.33%, #8a35ea 100%);
 	justify-content: space-between;
 	align-items: center;
-	border-bottom: 2px solid #EEE;
+	border-bottom: 2px solid rgb(238, 238, 238);
 }
 
 .date-picker .dates .month .arrows {
@@ -100,6 +129,17 @@ h1 span {
 	align-items: center;
 	color: #313131;
 }
+
+
+.date-picker .dates .days .day:nth-of-type(odd) {
+    background-color: rgb(200, 125, 253)  ;
+}
+
+.date-picker .dates .days:nth-child(even) {
+    background-color: rgb(177, 106, 227)  ;
+}
+
 .date-picker .dates .days .day.selected {
-	background-color: #00CA85;
+	background-color: #F3F3F3;
+    border-radius: 50%;
 }
